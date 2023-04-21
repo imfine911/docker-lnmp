@@ -11,7 +11,7 @@ LABEL maintainer="YanlongMa <json_vip@163.com>"
 # Alpine Aliyun Mirrors:
 ###########################################################################
 
-#RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 
 
 ###########################################################################
@@ -75,7 +75,7 @@ RUN docker-php-ext-install pcntl
 RUN docker-php-ext-install opcache
 
 # Core Extensions zip:
-RUN docker-php-ext-configure zip --with-libzip \
+RUN docker-php-ext-configure zip \
             && docker-php-ext-install zip
 
 ###########################################################################
@@ -83,9 +83,9 @@ RUN docker-php-ext-configure zip --with-libzip \
 ###########################################################################
 
 # PECL Extensions event:
-RUN pecl install event \
+RUN pecl install event-3.0.8 \
         && rm -rf /tmp/pear \
-        &&  docker-php-ext-enable --ini-name zz-event.ini event \
+        &&  docker-php-ext-enable --ini-name zz-event.ini event
 
 # PECL Extensions reids:
 RUN pecl install redis-5.3.6 \
@@ -94,21 +94,27 @@ RUN pecl install redis-5.3.6 \
 
 
 # PECL Extensions mongodb:
-RUN pecl install mongodb-1.5.4 \
+RUN pecl install mongodb-1.15.1 \
         && rm -rf /tmp/pear \
         && docker-php-ext-enable mongodb
 
 
 # PECL Extensions memcached:
-RUN  pecl install memcached-3.1.2 \
+RUN  pecl install memcached-3.2.0 \
        && rm -rf /tmp/pear \
        && docker-php-ext-enable memcached
 
+ # PECL Extensions xlswriter:
+RUN pecl install xlswriter-1.5.4 \
+         && rm -rf /tmp/pear \
+         && docker-php-ext-enable xlswriter
 
 # PECL Extensions swoole:
-RUN  pecl install swoole-4.2.13 \
+RUN  pecl install swoole-4.8.13 \
         && rm -rf /tmp/pear \
         && docker-php-ext-enable swoole
+
+
 
 
 ###########################################################################
@@ -137,7 +143,7 @@ RUN  pecl install swoole-4.2.13 \
 # Composer:
 RUN curl -sS http://getcomposer.org/installer | php \
         && mv ./composer.phar /usr/local/bin/composer \
-        && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer \
+        && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer
 
 RUN apk del build-base \
     	linux-headers \
