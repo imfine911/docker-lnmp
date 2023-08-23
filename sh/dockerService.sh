@@ -20,6 +20,3 @@ if [ $1 == 'restart' ]; then
     docker-compose up -d nginx
     echo "lnmp 服务 启动完成"
 fi
-
-
-
