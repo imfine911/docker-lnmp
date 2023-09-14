@@ -114,6 +114,11 @@ RUN  pecl install swoole-5.0.2 \
          && rm -rf /tmp/pear \
          && docker-php-ext-enable xlswriter
 
+ # PECL Extensions xdebug:
+RUN  pecl install xdebug-3.2.2 \
+         && rm -rf /tmp/pear \
+         && docker-php-ext-enable xdebug
+
 
 ###########################################################################
 # PHP Thrid Extensions:
