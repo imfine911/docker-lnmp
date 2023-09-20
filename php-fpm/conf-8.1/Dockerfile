@@ -115,9 +115,16 @@ RUN  pecl install swoole-5.0.2 \
          && docker-php-ext-enable xlswriter
 
  # PECL Extensions xdebug:
-RUN  pecl install xdebug-3.2.2 \
-         && rm -rf /tmp/pear \
-         && docker-php-ext-enable xdebug
+#RUN  pecl install xdebug-3.2.2 \
+#         && rm -rf /tmp/pear \
+#         && docker-php-ext-enable xdebug
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug \
+    && echo "xdebug.mode=debug" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.client_host = host.docker.internal" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.idekey = PHPSTORM" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.client_host = host.docker.internal" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
 
 
 ###########################################################################
