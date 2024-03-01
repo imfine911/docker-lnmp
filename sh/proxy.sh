@@ -15,8 +15,8 @@ set_proxy(){
   export ALL_PROXY="${PROXY_SOCKS5}"
   export all_proxy=${PROXY_SOCKS5}
  
-  git config --global http.https://github.com.proxy ${PROXY_HTTP}
-  git config --global https.https://github.com.proxy ${PROXY_HTTP}
+#  git config --global http.https://github.com.proxy ${PROXY_HTTP}
+#  git config --global https.https://github.com.proxy ${PROXY_HTTP}
  
   echo "Proxy has been opened."
 }
@@ -28,8 +28,8 @@ unset_proxy(){
   unset HTTPS_PROXY
   unset ALL_PROXY
   unset all_proxy
-  git config --global --unset http.https://github.com.proxy
-  git config --global --unset https.https://github.com.proxy
+#  git config --global --unset http.https://github.com.proxy
+#  git config --global --unset https.https://github.com.proxy
  
   echo "Proxy has been closed."
 }

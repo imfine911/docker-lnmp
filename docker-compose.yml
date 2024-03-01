@@ -120,6 +120,81 @@ services:
       app-net:
         ipv4_address: 10.5.0.10
 
+  redis2:
+    container_name: redis2
+    build:
+      context: ./redis
+      args:
+        - REDIS_VERSION=${REDIS_VERSION}
+    ports:
+      - ${REDIS2_PORT}:6379
+    volumes:
+      - ./redis/data2:/data
+    restart: always
+    networks:
+      app-net:
+        ipv4_address: 10.5.0.12
+
+  redis3:
+    container_name: redis3
+    build:
+      context: ./redis
+      args:
+        - REDIS_VERSION=${REDIS_VERSION}
+    ports:
+      - ${REDIS3_PORT}:6379
+    volumes:
+      - ./redis/data3:/data
+    restart: always
+    networks:
+      app-net:
+        ipv4_address: 10.5.0.13
+
+  redis4:
+    container_name: redis4
+    build:
+      context: ./redis
+      args:
+        - REDIS_VERSION=${REDIS_VERSION}
+    ports:
+      - ${REDIS4_PORT}:6379
+    volumes:
+      - ./redis/data4:/data
+    restart: always
+    networks:
+      app-net:
+        ipv4_address: 10.5.0.14
+
+  redis5:
+    container_name: redis5
+    build:
+      context: ./redis
+      args:
+        - REDIS_VERSION=${REDIS_VERSION}
+    ports:
+      - ${REDIS5_PORT}:6379
+    volumes:
+      - ./redis/data5:/data
+    restart: always
+    networks:
+      app-net:
+        ipv4_address: 10.5.0.15
+
+  redis6:
+    container_name: redis6
+    build:
+      context: ./redis
+      args:
+        - REDIS_VERSION=${REDIS_VERSION}
+    ports:
+      - ${REDIS6_PORT}:6379
+    volumes:
+      - ./redis/data6:/data
+    restart: always
+    networks:
+      app-net:
+        ipv4_address: 10.5.0.16
+
   memcached:
     container_name: memcached
     build:
