@@ -120,80 +120,95 @@ services:
       app-net:
         ipv4_address: 10.5.0.10
 
-  redis2:
-    container_name: redis2
+  redis_cluster_node1:
+    container_name: redis_cluster_node1
     build:
-      context: ./redis
+      context: ./redis/cluster/node1
       args:
         - REDIS_VERSION=${REDIS_VERSION}
     ports:
-      - ${REDIS2_PORT}:6379
+      - ${REDIS_CLUSTER_NODE1_PORT}:6379
     volumes:
-      - ./redis/data2:/data
+      - ./redis/cluster/node1/data:/data
     restart: always
     networks:
       app-net:
         ipv4_address: 10.5.0.12
 
-  redis3:
-    container_name: redis3
+  redis_cluster_node2:
+    container_name: redis_cluster_node2
     build:
-      context: ./redis
+      context: ./redis/cluster/node2
       args:
         - REDIS_VERSION=${REDIS_VERSION}
     ports:
-      - ${REDIS3_PORT}:6379
+      - ${REDIS_CLUSTER_NODE2_PORT}:6379
     volumes:
-      - ./redis/data3:/data
+      - ./redis/cluster/node2/data:/data
     restart: always
     networks:
       app-net:
         ipv4_address: 10.5.0.13
 
-  redis4:
-    container_name: redis4
+  redis_cluster_node3:
+    container_name: redis_cluster_node3
     build:
-      context: ./redis
+      context: ./redis/cluster/node3
       args:
         - REDIS_VERSION=${REDIS_VERSION}
     ports:
-      - ${REDIS4_PORT}:6379
+      - ${REDIS_CLUSTER_NODE3_PORT}:6379
     volumes:
-      - ./redis/data4:/data
+      - ./redis/cluster/node3/data:/data
     restart: always
     networks:
       app-net:
         ipv4_address: 10.5.0.14
 
-  redis5:
-    container_name: redis5
+  redis_cluster_node4:
+    container_name: redis_cluster_node4
     build:
-      context: ./redis
+      context: ./redis/cluster/node4
       args:
         - REDIS_VERSION=${REDIS_VERSION}
     ports:
-      - ${REDIS5_PORT}:6379
+      - ${REDIS_CLUSTER_NODE4_PORT}:6379
     volumes:
-      - ./redis/data5:/data
+      - ./redis/cluster/node4/data:/data
     restart: always
     networks:
       app-net:
         ipv4_address: 10.5.0.15
 
-  redis6:
-    container_name: redis6
+  redis_cluster_node5:
+    container_name: redis_cluster_node5
     build:
-      context: ./redis
+      context: ./redis/cluster/node5
       args:
         - REDIS_VERSION=${REDIS_VERSION}
     ports:
-      - ${REDIS6_PORT}:6379
+      - ${REDIS_CLUSTER_NODE5_PORT}:6379
     volumes:
-      - ./redis/data6:/data
+      - ./redis/cluster/node5/data:/datad
     restart: always
     networks:
       app-net:
         ipv4_address: 10.5.0.16
+
+  redis_cluster_node6:
+    container_name: redis_cluster_node6
+    build:
+      context: ./redis/cluster/node6
+      args:
+        - REDIS_VERSION=${REDIS_VERSION}
+    ports:
+      - ${REDIS_CLUSTER_NODE6_PORT}:6379
+    volumes:
+      - ./redis/cluster/node6/data:/data
+    restart: always
+    networks:
+      app-net:
+        ipv4_address: 10.5.0.17
 
   memcached:
     container_name: memcached
